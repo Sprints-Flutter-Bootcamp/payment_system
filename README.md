@@ -12,13 +12,18 @@ A simple and **payment system** designed using the **SOLID principles** for lear
   - `CashPayment` handles only **cash transactions**.  
   - `CreditPayment` handles only **credit card transactions**.
   - `FawryPayment` handles only **Fawry payment method**. 
-  - `PaymentProcessor` is responsible **only for processing payments**, not handling UI.  
+  - `PaymentProcessor` is responsible **only for processing payments**.
 
 ```dart
 class CashPayment implements PaymentMethod {
   @override
   void pay(double amount) {
-    print("Paid \$${amount.toStringAsFixed(2)} in cash.");
+    print('Paid \$$amount using Cash.');
+  }
+
+  @override
+  String getMethodName() {
+    return 'Cash';
   }
 }
 ```
@@ -40,7 +45,12 @@ abstract class PaymentMethod {
  class PayPalPayment implements PaymentMethod {
   @override
   void pay(double amount) {
-    print("Paid \$${amount.toStringAsFixed(2)} using PayPal.");
+    print("Paid \$$amount using PayPal.");
+  }
+  
+  @override
+  String getMethodName() {
+    return 'Paypal';
   }
 }
 ```
