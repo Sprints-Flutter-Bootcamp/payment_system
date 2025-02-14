@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment_system/core/service/payment_service.dart';
+import 'package:payment_system/core/widgets/my_app_bar.dart';
 import 'package:payment_system/core/widgets/my_button.dart';
 import 'package:payment_system/core/widgets/my_text_field.dart';
 import 'package:payment_system/features/payment/domain/entities/cash_payment.dart';
@@ -16,15 +17,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _cardController = TextEditingController();
 
-  void _payWithCash() {
-    double amount = double.tryParse(_amountController.text) ?? 0.0;
-    PaymentProcessor(CashPayment()).processPayment(amount);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Payment System')),
+      appBar: myAppBar(context, "Payment System"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
